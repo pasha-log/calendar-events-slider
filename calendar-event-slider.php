@@ -24,10 +24,10 @@ function calendar_event_slider() {
     // Loop through the events
     foreach ($events as $event) {
         // Get the data points
-        $permalink = home_url('/event/' . $event->post_name);
-        $img_url = get_the_post_thumbnail_url($event->ID);
-        $date = date('j M', strtotime($event->start_date));
-        $title = $event->post_title;
+        $permalink = esc_url(home_url('/event/' . $event->post_name));
+        $img_url = esc_url(get_the_post_thumbnail_url($event->ID));
+        $date = esc_html(date('j M', strtotime($event->start_date)));
+        $title = esc_html($event->post_title);
 
         // Add the slide HTML
         $html .= '<li class="glide__slide"><a href="' . $permalink . '"><img src="' . $img_url . '" alt="' . $title . '"><div class="date-tag"><span class="day">' . explode(' ', $date)[0] . '</span><span class="month">' . explode(' ', $date)[1] . '</span></div><div class="slide-text">' . $title . '</div></a></li>';
